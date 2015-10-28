@@ -1,0 +1,11 @@
+{
+  "name": "jaune-fs",
+  "version": "1.0.0",
+  "description": "file system for jaune framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ajuste <jaune.engine@gmail.com>",
+  "license": "ISC"
+}
