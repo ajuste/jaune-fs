@@ -1,1 +1,1 @@
-module.exports = require("./lib/filesystem-manager");
+module.exports = require("./lib");
