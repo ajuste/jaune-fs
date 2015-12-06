@@ -9,6 +9,7 @@
   "author": "ajuste <jaune.engine@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "dropbox" : "=0.10.1",
     "jaune-env": "git+https://github.com/ajuste/jaune-env.git#master",
     "jaune-util": "git+https://github.com/ajuste/jaune-util.git#master",
     "lodash": "^3.10.1",
