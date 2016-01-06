@@ -9,7 +9,7 @@
   "author": "Alvaro Juste <juste.alvaro@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "dropbox" : "=0.10.1",
+    "dropbox": "=0.10.1",
     "jaune-env": "=0.0.1",
     "jaune-util": "=0.0.1",
     "lodash": "^3.10.1",
@@ -18,5 +18,21 @@
     "path": "^0.12.7",
     "q": "^1.4.1"
   },
-  "engine": "node >= 0.10.0"
+  "engine": "node >= 0.10.0",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@jaune-fs.github.com:ajuste/jaune-fs.git"
+  },
+  "keywords": [
+    "jaune",
+    "web",
+    "node",
+    "fs",
+    "file",
+    "system",
+    "koa"
+  ]
 }
