@@ -11,7 +11,7 @@
   "dependencies": {
     "dropbox": "=0.10.1",
     "jaune-env": "=0.0.x",
-    "jaune-util": "=0.0.x",
+    "jaune-util": "git+ssh://github.com/ajuste/jaune-util.git#master",
     "lodash": "^3.10.1",
     "mime": "^1.3.4",
     "ncp": "^2.0.0",
