@@ -13,6 +13,7 @@ ncp = require "ncp"
 {
   createReadStream
   createWriteStream
+  exists
   rename
   readFile
   stat
@@ -90,7 +91,7 @@ class FSFileSystem
 
     path = convertPathToAbsolute path unless options.absolutes
 
-    new Promise (res, rej) ->
+    new Promise (res, rej) =>
 
       switch options.encoding
 
