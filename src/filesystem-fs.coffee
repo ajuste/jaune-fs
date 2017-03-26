@@ -12,12 +12,14 @@ ncp = require "ncp"
 } = require "path"
 {
   createReadStream
+  createWriteStream
   rename
   readFile
   stat
   writeFile
   unlink
 } = require "fs"
+
 stream = require "stream"
 
 ###*
