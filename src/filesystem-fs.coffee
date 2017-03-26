@@ -63,7 +63,7 @@ class FSFileSystem
 
     new Promise (res, rej) ->
 
-      if data instanceof _stream
+      if data instanceof stream
 
         write = createWriteStream(path);
 
