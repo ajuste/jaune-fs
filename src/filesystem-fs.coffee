@@ -45,8 +45,8 @@ class FSFileSystem
   ###
   move: (source, target, options = {absolute: no}) ->
 
-    source = options.absolute ? source : convertPathToAbsolute source
-    target = options.absolute ? target : convertPathToAbsolute target
+    source = convertPathToAbsolute source unless options.absolutes
+    target = convertPathToAbsolute target unless options.absolutes
 
     new Promise (res, rej) ->
       rename source, target, (err) ->
@@ -61,7 +61,7 @@ class FSFileSystem
   ###
   writeFile : (path, data, options = {absolute: no}) ->
 
-    path = options.absolute ? path : convertPathToAbsolute path
+    path = convertPathToAbsolute path unless options.absolutes
 
     new Promise (res, rej) ->
 
@@ -88,7 +88,7 @@ class FSFileSystem
   ###
   readFile : (path, options = {encoding: "binary", aboslute: no}) ->
 
-    path = options.absolute ? path : convertPathToAbsolute path
+    path = convertPathToAbsolute path unless options.absolutes
 
     new Promise (res, rej) ->
 
@@ -113,7 +113,7 @@ class FSFileSystem
   ###
   exists : (path, options = {aboslute: no}) ->
 
-    path = options.absolute ? path : convertPathToAbsolute path
+    path = convertPathToAbsolute path unless options.absolutes
 
     new Promise (res, rej) ->
       exists path, (err, exists) ->
@@ -138,7 +138,7 @@ class FSFileSystem
   ###
   removeFile : (path, options = {absolue: no}) ->
 
-    path = options.absolute ? path : convertPathToAbsolute path
+    path = convertPathToAbsolute path unless options.absolutes
 
     new Promise (res, rej) ->
       unlink path, (err) ->
