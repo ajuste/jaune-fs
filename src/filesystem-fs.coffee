@@ -46,8 +46,8 @@ class FSFileSystem
   ###
   move: (source, target, options = {absolute: no}) ->
 
-    source = convertPathToAbsolute source unless options.absolutes
-    target = convertPathToAbsolute target unless options.absolutes
+    source = convertPathToAbsolute source unless options.absolute
+    target = convertPathToAbsolute target unless options.absolute
 
     new Promise (res, rej) ->
       rename source, target, (err) ->
@@ -62,7 +62,7 @@ class FSFileSystem
   ###
   writeFile : (path, data, options = {absolute: no}) ->
 
-    path = convertPathToAbsolute path unless options.absolutes
+    path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) ->
 
@@ -79,7 +79,9 @@ class FSFileSystem
           .on "error", rej
 
       else
-        writeFile convertPathToAbsolute(path), data
+        writeFile convertPathToAbsolute(path), data, (err) ->
+          return rej err if err?
+          res()
 
   ###*
    * @function Reads a file at the given path.
@@ -87,9 +89,9 @@ class FSFileSystem
    * @param    {String} [options.encoding] The encoding of the file
    * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
   ###
-  readFile : (path, options = {encoding: "binary", aboslute: no}) ->
+  readFile : (path, options = {encoding: "binary", absolute: no}) ->
 
-    path = convertPathToAbsolute path unless options.absolutes
+    path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) =>
 
@@ -97,24 +99,24 @@ class FSFileSystem
 
         when 'binary'
 
-          @exists path, absolute: true
+          @exists path, options.absolute
             .then (exists) ->
               return res createReadStream path if exists
               rej new Error "file does not exists"
             .catch rej
 
         else
-          readFile path, options.encoding, (err) ->
+          readFile path, options.encoding, (err, data) ->
             return rej err if err?
-            res()
+            res data
 
   ###*
    * @function Checks if file exists.
    * @param    {path} string The path to file.
   ###
-  exists : (path, options = {aboslute: no}) ->
+  exists : (path, options = {absolute: no}) ->
 
-    path = convertPathToAbsolute path unless options.absolutes
+    path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) ->
       exists path, (err, exists) ->
@@ -139,7 +141,7 @@ class FSFileSystem
   ###
   removeFile : (path, options = {absolue: no}) ->
 
-    path = convertPathToAbsolute path unless options.absolutes
+    path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) ->
       unlink path, (err) ->
@@ -151,10 +153,11 @@ class FSFileSystem
    * @param {path} string The source path.
    * @param {function} cb Standard callback function.
   ###
-  stat : (path, cb) ->
+  stat : (path, options = {absolute: no}) ->
+
+    path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) ->
-
       stat convertPathToAbsolute(path), (err, stat) ->
         return rej err if err?
         res new FSClientStat path, stat
@@ -166,7 +169,7 @@ class FSFileSystem
 ###
 class FSClientStat
 
-  constructor (@path, @stat) ->
+  constructor: (@path, @stat) ->
     {@mtime, @size} = @stat
 
   ###*
