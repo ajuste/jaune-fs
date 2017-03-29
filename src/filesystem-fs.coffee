@@ -99,7 +99,7 @@ class FSFileSystem
 
         when 'binary'
 
-          @exists path, options.absolute
+          @exists path, absolute: yes
             .then (exists) ->
               return res createReadStream path if exists
               rej new Error "file does not exists"
