@@ -118,10 +118,7 @@ class FSFileSystem
 
     path = convertPathToAbsolute path unless options.absolute
 
-    new Promise (res, rej) ->
-      exists path, (err, exists) ->
-        return res err if err?
-        res exists
+    new Promise (res) -> exists path, res
 
   ###
    * @function Copies a path into another.
