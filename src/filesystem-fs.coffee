@@ -99,11 +99,10 @@ class FSFileSystem
 
         when 'binary'
 
-          @exists path, absolute: yes
-            .then (exists) ->
-              return res createReadStream path if exists
-              rej new Error "file does not exists"
-            .catch rej
+          p = @exists(path, absolute: yes)
+          p.then (exists) ->
+            return res createReadStream path if exists
+            rej new Error "file does not exists"
 
         else
           readFile path, options.encoding, (err, data) ->
@@ -118,7 +117,7 @@ class FSFileSystem
 
     path = convertPathToAbsolute path unless options.absolute
 
-    new Promise (res) -> exists path, res
+    new Promise (res, rej) -> exists path, res
 
   ###
    * @function Copies a path into another.
@@ -151,11 +150,10 @@ class FSFileSystem
    * @param {function} cb Standard callback function.
   ###
   stat : (path, options = {absolute: no}) ->
-
     path = convertPathToAbsolute path unless options.absolute
 
     new Promise (res, rej) ->
-      stat convertPathToAbsolute(path), (err, stat) ->
+      stat path, (err, stat) ->
         return rej err if err?
         res new FSClientStat path, stat
 
@@ -177,6 +175,6 @@ class FSClientStat
   ###*
    * @function Returns the MIME type of file.
   ###
-  getMime : -> if @isDirectory() then "" else _mime.lookup(convertPathToAbsolute(@path))
+  getMime : -> if @isDirectory() then "" else mime.lookup(@path)
 
 module.exports = FsClient : FSFileSystem
