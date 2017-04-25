@@ -4,7 +4,7 @@
   "description": "file system for jaune framework",
   "main": "index.js",
   "scripts": {
-    "test": "make compile-tests && ./node_modules/mocha/bin/mocha ./test/*",
+    "test": "make test",
     "cover": "make cover"
   },
   "author": "Alvaro Juste <juste.alvaro@gmail.com>",
