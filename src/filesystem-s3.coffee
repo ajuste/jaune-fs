@@ -18,7 +18,8 @@ class FsClient
     AWS = require 'aws-sdk'
 
     # this will have the following format:
-    # { "accessKeyId": <YOUR_ACCESS_KEY_ID>, "secretAccessKey": <YOUR_SECRET_ACCESS_KEY>, "region": "us-east-1" }
+    # { "accessKeyId": <YOUR_ACCESS_KEY_ID>, "secretAccessKey":
+    # <YOUR_SECRET_ACCESS_KEY>, "region": "us-east-1" }
     @s3 = new AWS.S3 @connection
 
   ###*
@@ -87,11 +88,12 @@ class FsClient
   ###*
    * @function Removes a file
    * @param    {String} path The file to be removed
-   * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
+   * @param    {Boolean} [options.absolute] When true the path is not
+   *           converted to absolute.
   ###
   removeFile : (path, options = {absolue: no}) ->
 
-    params = Bucket: @connection.bucket, Key: target, Key: path
+    params = Bucket: @connection.bucket, Key: path
 
     new Promise (res, rej) ->
       s3.deleteObject params, (err, data) -> if err? then rej err else res data

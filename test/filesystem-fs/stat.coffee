@@ -4,8 +4,8 @@
 } = require 'assert'
 
 {
-    writeFile
-    unlink
+  writeFile
+  unlink
 } = require 'fs'
 
 {
