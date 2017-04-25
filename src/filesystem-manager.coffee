@@ -5,7 +5,7 @@
 "use strict"
 
 # 3rd
-reflection = require("jaune-util").Reflection;
+reflection = require("jaune-util").Reflection
 
 Enums =
   ReadResult :
@@ -18,7 +18,7 @@ Enums =
 ###*
  * @constant Environment section name for file system connections
 ###
-FILESYSTEM_CONNECTIONS = "jaune.fileSystem.connections";
+FILESYSTEM_CONNECTIONS = "jaune.fileSystem.connections"
 
 ###*
 * @function Gets result for reading

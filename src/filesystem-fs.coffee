@@ -1,5 +1,6 @@
 ###*
- * @file   NodeJS module that implements file system handler based on local file system.
+ * @file   NodeJS module that implements file system handler based on local
+*          file system.
  * @author Alvaro Juste <juste.alvaro@gmail.com>
 ###
 
@@ -42,7 +43,8 @@ class FSFileSystem
    * @function Move a file
    * @param    {String} source Source path
    * @param    {String} target Targett path
-   * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
+   * @param    {Boolean} [options.absolute] When true the path is not
+   *           converted to absolute.
   ###
   move: (source, target, options = {absolute: no}) ->
 
@@ -58,7 +60,8 @@ class FSFileSystem
    * @function Writes a file into file system.
    * @param    {String} path Where to write
    * @param    {Buffer|String|Stream} data Data to be written into file.
-   * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
+   * @param    {Boolean} [options.absolute] When true the path is not
+   *           converted to absolute.
   ###
   writeFile : (path, data, options = {absolute: no}) ->
 
@@ -68,7 +71,7 @@ class FSFileSystem
 
       if data instanceof stream
 
-        write = createWriteStream(path);
+        write = createWriteStream path
 
         data
           .on "end", res
@@ -87,7 +90,8 @@ class FSFileSystem
    * @function Reads a file at the given path.
    * @param    {String} path The path to read file from.
    * @param    {String} [options.encoding] The encoding of the file
-   * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
+   * @param    {Boolean} [options.absolute] When true the path is not
+   *           converted to absolute.
   ###
   readFile : (path, options = {encoding: "binary", absolute: no}) ->
 
@@ -133,7 +137,8 @@ class FSFileSystem
   ###*
    * @function Removes a file
    * @param    {String} path The file to be removed
-   * @param    {Boolean} [options.absolute] When true the path is not converted to absolute.
+   * @param    {Boolean} [options.absolute] When true the path is not
+   *           converted to absolute.
   ###
   removeFile : (path, options = {absolue: no}) ->
 
