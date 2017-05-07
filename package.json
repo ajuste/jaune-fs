@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "make test",
+    "prepublish": "make compile",
     "cover": "make cover"
   },
   "author": "Alvaro Juste <juste.alvaro@gmail.com>",
@@ -16,13 +17,14 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@google-cloud/storage": "^1.1.0",
     "assert": "^1.3.0",
     "coffee-script": "^1.12.5",
     "coffeelint": "^1.16.0",
     "coveralls": "^2.13.0",
     "istanbul": "^0.4.5",
     "mocha": "^2.4.5",
-    "mock-require": "^2.0.1"
+    "mock-require": "^2.0.2"
   },
   "engine": "node >= 0.12",
   "directories": {
