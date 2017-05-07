@@ -19,7 +19,7 @@ compile-tests: compile
 
 # Run lint for coffeescript
 run-coffee-lint:
-	# ./node_modules/coffeelint/bin/coffeelint src/ test/
+	./node_modules/coffeelint/bin/coffeelint src/ test/
 
 test: compile-tests run-coffee-lint
 	./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha ./test-compiled/**/*.js
