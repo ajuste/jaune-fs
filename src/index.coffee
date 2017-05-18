@@ -1,7 +1,15 @@
-module.exports = Object.assign(
-  {}
-  require './filesystem-manager'
-  require './filesystem-fs'
-  require './filesystem-s3'
-  require './filesystem-google-storage'
-)
+{
+  Manager
+  ReadResult
+} = require './filesystem-manager'
+{
+  FsClient
+} = require './filesystem-fs'
+{
+  S3Bucket
+} = require './filesystem-s3'
+{
+  GoogleStorageClient
+} = require './filesystem-google-storage'
+
+module.exports = {Manager, ReadResult, FsClient, S3Bucket, GoogleStorageClient}
