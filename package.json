@@ -1,6 +1,6 @@
 {
   "name": "jaune-fs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "file system for jaune framework",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,8 @@
   "author": "Alvaro Juste <juste.alvaro@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "jaune-env": "0.0.5",
+    "jaune-env": "~0.0.5",
+    "jaune-util": "0.0.6",
     "mime": "^1.3.4",
     "ncp": "^2.0.0",
     "path": "^0.12.7"
