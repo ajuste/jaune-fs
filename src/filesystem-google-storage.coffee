@@ -72,7 +72,9 @@ class GoogleStorageClient
    * @param    {String} path The key of the object
    * @returns  {Stream}
   ###
-  readFile : (path) -> @file(path).createReadStream()
+  readFile : (path) ->
+    new Promise (res) =>
+      res @file(path).createReadStream()
 
   ###*
    * @function Checks if file exists.
