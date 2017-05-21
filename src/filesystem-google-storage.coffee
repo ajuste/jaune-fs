@@ -29,7 +29,14 @@ class GoogleStorageClient
     @storage = require('@google-cloud/storage') @connection
     @bucket = @storage.bucket @connection.bucketName
 
-  file: (path) -> @bucket.file path
+  file: (path) -> @bucket.file @transformPath path
+
+  ###*
+   * @function Transforms a path to confirm with google storage
+   * @param    {String} path The path to be transformed
+   * @returns  {String} transformed path
+  ###
+  transformPath: (path) -> path.replace /^(\/)+/, ''
 
   ###*
    * @function Move a file
@@ -42,7 +49,7 @@ class GoogleStorageClient
     new Promise (res, rej) =>
 
       @file source
-        .move target, (err) -> if err? then rej err else res()
+        .move @transformPath(target), (err) -> if err? then rej err else res()
 
   ###*
    * @function Writes a file bucket
@@ -97,7 +104,8 @@ class GoogleStorageClient
 
     new Promise (res, rej) =>
 
-      @file(from).copy to, (err, exists) -> if err? then rej err else res()
+      @file(from).copy @transformPath(to), (err, exists) ->
+        if err? then rej err else res()
 
   ###*
    * @function Removes a file
