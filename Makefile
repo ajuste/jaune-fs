@@ -15,6 +15,7 @@ compile:
 
 # Compile tests
 compile-tests: compile
+	rm -rf ./test-compiled
 	@$(COFFEE) --output ./test-compiled --no-header --compile -b ./test
 
 # Run lint for coffeescript
