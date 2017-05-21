@@ -1,6 +1,6 @@
 {
   "name": "jaune-fs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "file system for jaune framework",
   "main": "index.js",
   "scripts": {

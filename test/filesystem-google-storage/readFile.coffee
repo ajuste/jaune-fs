@@ -61,10 +61,12 @@ describe 'filesystem-google-storage-fs', ->
 
         @fs
           .readFile FileNameOrigin
-          .on 'data', (data) ->
-            equal data.toString('utf-8'), FileData
-          .on 'end', cb
-          .on 'error', (err) -> cb equal null, err
+          .then (stream) ->
+            stream
+              .on 'data', (data) ->
+                equal data.toString('utf-8'), FileData
+              .on 'end', cb
+              .on 'error', (err) -> cb equal null, err
 
     describe 'failing', ->
 
@@ -93,6 +95,8 @@ describe 'filesystem-google-storage-fs', ->
 
       it 'should fail to read non existing file', (cb) ->
 
-        new PassThrough().pipe(@fs
-            .readFile FileNameOriginNonExisting
-            .on 'error', ({code}) -> cb equal code, 500)
+        @fs
+          .readFile FileNameOriginNonExisting
+          .then (stream) ->
+            new PassThrough().pipe(
+              stream.on 'error', ({code}) -> cb equal code, 500)
